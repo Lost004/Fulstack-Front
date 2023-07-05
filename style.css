@@ -1095,6 +1095,25 @@
     line-height: 24px;
     color: rgb(112, 112, 112);
   }
+  .accordion-item {
+    margin-bottom: 10px;
+  }
+  
+  .accordion-header {
+    background-color: #f1f1f1;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  
+  .accordion-item.active .accordion-content {
+    max-height: 500px; /* İçeriğin maksimum yüksekliği */
+  }
   
   #your-inbox {
     position: relative;
@@ -1202,7 +1221,46 @@
       font-size: 16px;
       font-weight: 600;
   }
+.accordion-content{
+    font-size: 18px;
+    line-height: 30px;
+    /* background-color: #e2e2e2; */
+    padding-top: 2%;
+    padding-bottom: 1%;
+}
+.product-card-color{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.product-card__color__content{
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:50% ;
+    cursor: pointer;
+}
+.product-card__color__content:hover{
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.product-card__color__content.active-color{
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.product-card__color--box{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    
+}
+.product-card-color{
+    padding-top: 1%;
+    padding-bottom: 2%;
+}
 
+  
   /* shop page end */
 
   /* Single Product */
