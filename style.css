@@ -1,4 +1,4 @@
-  @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 
   * {
       margin: 0;
@@ -197,6 +197,7 @@
       cursor: pointer;
       font-size: 18px;
       color: #777;
+      
   }
 
   .logo {
@@ -1602,6 +1603,10 @@ width: 70px;
     padding: 10px;
     font-size: 13px;
 }
+#close{
+    display: none;
+}
+
 
 
 
@@ -1642,7 +1647,7 @@ width: 70px;
           align-items: center;
       }
 
-      #close {
+      #close{
           display: none;
       }
 
