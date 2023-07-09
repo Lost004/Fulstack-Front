@@ -20,27 +20,39 @@
     </div>
     <button id="scrollTopButton"><i class="fa-solid fa-arrow-up"></i></button>
 
-    <!-- Header Start-->
-    <section id="header">
-        <a href="#"><img src="img/logo-no-background.png" class="logo" alt=""></a>
+   <!-- Header Start-->
+   <section id="header">
+    <a href="#"><img src="img/logo-no-background.png" class="logo" alt=""></a>
+    <div class="search-bar">
+        <form id="form" action="#">
+            <label id="search-label" for="search">
+                <span>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+                <input id="search" type="text" placeholder="Search Anything..." aria-label="Search"
+                    autocomplete="off">
+            </label>
+        </form>
+    </div>
+    <div>
 
-        <div>
-            <ul id="navbar">
-                <li><a href="index.html">Home</a></li>
-                <li><a class="active" href="shop.html">Shop</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a></li>
-                <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
-            </ul>
-        </div>
-        <div id="mobile">
-            <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
-            <i id="bar" class="fa-solid fa-bars"></i>
-        </div>
-    </section>
-    <!-- Header end -->
+        <ul id="navbar">
+            <li><a  href="index.html">Home</a></li>
+            <li><a class="active" href="shop.html">Shop</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li id="lg-user"><a href="logın.html"><i class="fa-solid fa-user"></i></a></li>
+            <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a></li>
+            <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
+        </ul>
+    </div>
+    <div id="mobile">
+        <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
+        <i id="bar"  class="fa-solid fa-bars"></i>
+    </div>
+</section>
+<!-- Header end -->
 
     <section id="prodetails" class="section-p1">
         <div class="single-pro-image">
@@ -276,17 +288,25 @@
     <!-- footer end -->
     <script>
 
-let productCards = document.querySelectorAll(".product-card")
-function setActiveColor(event){
-    let parent = event.currenTarget.closest(".prduct-card")
-    let colorContents = parent.querySelectorAll(".prduct-card__color__content");
-    
+        let productCards = document.querySelectorAll(".product-card")
+        function setActiveColor(event) {
+            let parent = event.currenTarget.closest(".product-card")
+            let colorContents = parent.querySelectorAll(".product-card__color__content");
 
-    for (let i=0; i < colorContents.length;i++){
-        colorContents[i].classlist.remove("active-color")
-    }
-    event.currentTarget.classList.add("active-color")
-}
+
+            for (let i = 0; i < colorContents.length; i++) {
+                colorContents[i].classlist.remove("active-color")
+            }
+            event.currentTarget.classList.add("active-color")
+        }
+
+        for (let i = 0; i < productCards.length; i++) {
+            var colorContents = productCards[i].querySelectorAll(".product-card__color__content");
+
+            for (let j = 0; j < colorContents.length; j++) {
+                colorContents[j].addEventListener("click", setActiveColor)
+            }
+        }
 
 
         const accordionItems = document.querySelectorAll('.accordion-item');
