@@ -790,6 +790,10 @@
     margin: 0;
     box-sizing: border-box;
   }
+.endphoto{
+    margin-bottom: 6%;
+}
+  
   
   .container {
     max-width: 1391px;
