@@ -14,64 +14,64 @@
     <link rel="stylesheet" href="./style.css">
     <style>
         .popubbdy {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
+            
+  font-family: Arial, sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
 
-        #popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 9999;
-        }
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
 
-        #popup-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            max-width: 400px;
-        }
+.popup {
+  position: relative;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
 
-        #popup-logo {
-            width: 70px;
-            height: 70px;
-            margin-bottom: 20px;
-        }
+.logo {
+    width: 70px;
+        height: 70px;
+        margin-bottom: 20px;
+}
 
-        #confirm-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            margin-top: 10px;
-        }
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
 
-        #close-button1 {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 20px;
-            cursor: pointer;
-        }
-        #confirm-button{
-            background-color: black;
-        }
-        #confirm-button:hover{
-            background-color: #b0b0b0;
-            color: black;
-        }
-        
+.discounts,
+.credit-card {
+  margin-top: 10px;
+}
+
+.discounts {
+  font-size: 1.2em;
+}
+
+.credit-card {
+  font-size: 0.8em;
+}
+
     </style>
 </head>
 
@@ -79,11 +79,14 @@
     <div class="popubbdy">
         <div id="popup">
             <div id="popup-content">
-                <img id="popup-logo" src="img/logo-no-background.png" alt="Logo">
-                <h3>Are you over the age of 18?</h3>
-                <p>The reason we asked this is because shopping data is made with a credit card on our site.</p>
-                <button id="confirm-button">Yes</button>
-                <span id="close-button1" onclick="closePopup()">&times;</span>
+                <div id="overlay" class="overlay">
+                    <div id="popup" class="popup">
+                      <span class="close" id="closePopup">&times;</span>
+                      <img src="img/logo-no-background.png" alt="Logo" class="logo">
+                      <h3 class="discounts">Our new summer discounts starting from 35% – don't miss out on the latest</h3>
+                      <p class="credit-card">Shopping data is made on our website with a credit card.</p>
+                    </div>
+                  </div>
             </div>
         </div>
     </div>
@@ -92,23 +95,8 @@
         <div class="loader"></div>
         <p>Loading...</p>
     </div>
-    <button id="chat-button"><i class="fa-solid fa-comments fa-fade"></i></button>
 
-    <div id="chat-popup">
-        <div id="chat-container">
-            <div id="chat-header">
-                <h3>Online Chat</h3>
-                <button id="close-button">&times;</button>
-            </div>
-            <div id="chat-body">
-                <ul id="message-list"></ul>
-            </div>
-            <div id="chat-footer">
-                <input type="text" id="message-input" placeholder="Write your message...">
-                <button id="send-button">Send</button>
-            </div>
-        </div>
-    </div>
+
     <button id="scrollTopButton"><i class="fa-solid fa-arrow-up"></i></button>
 
     <!-- Header Start-->
@@ -576,59 +564,25 @@
 });
 
 
- var chatButton = document.getElementById("chat-button");
- var chatPopup = document.getElementById("chat-popup");
- var closeButton = document.getElementById("close-button");
- var messageInput = document.getElementById("message-input");
- var sendButton = document.getElementById("send-button");
-var messageList = document.getElementById("message-list");
 
-chatButton.addEventListener("click", function() {
-    chatPopup.style.display = "block";
+document.addEventListener('DOMContentLoaded', function() {
+  const overlay = document.getElementById('overlay');
+  const popup = document.getElementById('popup');
+  const closePopupButton = document.getElementById('closePopup');
+
+  overlay.style.display = 'flex';
+
+  closePopupButton.addEventListener('click', () => {
+    overlay.style.display = 'none';
+  });
+
+  overlay.addEventListener('click', (event) => {
+    if (event.target === overlay) {
+      overlay.style.display = 'none';
+    }
+  });
 });
 
-closeButton.addEventListener("click", function() {
-    chatPopup.style.display = "none";
- });
-
-sendButton.addEventListener("click", function() {
-    var message = messageInput.value;
-    if (message !== "") {
-        var listItem = document.createElement("li");
-        listItem.textContent = message;
-        messageList.appendChild(listItem);
-        messageInput.value = "";
-     }
-});
-
-
-function showPopup() {
-            document.getElementById('popup').style.display = 'block';
-        }
-
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
-        }
-
-        function onayla() {
-            var yas = prompt("Lütfen yaşınızı girin:");
-            if (yas !== null && yas !== "" && parseInt(yas) >= 18) {
-                // 18 yaşından büyükse, sayfaya giriş yapılsın
-                // Burada istediğiniz sayfaya yönlendirebilirsiniz.
-                alert("Siteye giriş yapıldı!");
-                closePopup();
-            } else {
-                // 18 yaşından küçükse veya yaş bilgisi girilmemişse hata mesajı gösterilsin
-                alert("18 yaşından büyük olmalısınız!");
-            }
-        }
-
-        document.getElementById('confirm-button').addEventListener('click', onayla);
-
-        // Sayfa yüklendiğinde popup'ı göstermek için:
-        window.onload = function () {
-            showPopup();
-        };
     </script>
 
     <script src="./script.js"></script>
